@@ -21,6 +21,7 @@ class MyString
 	//String From Array
 	MyString(char *s)
 	{
+		//cout<<strlen(s)<<endl;
 		len=strlen(s);
 		value=new char[len+1];
 		strcpy(value,s);
@@ -53,7 +54,7 @@ class MyString
 	char operator[](int val)
 	{
 		char rel;
-		if(val > len)
+		if(val >= len)
 		{
 			cout<<"\nInvalid index position \n";
 		}
@@ -73,7 +74,7 @@ class MyString
 		}
 		else
 		{
-			cout<<"The result is:"<<value<<"\n";
+			cout<<"The result is : "<<value<<"\n";
 		}
 	}
 };
@@ -93,6 +94,7 @@ istream & operator >> (istream &input, MyString &s)
 int main()
 {
 	//Use + overloaded operator
+	cout<<"Implementation of + operator overloading....!!\n\n";
 	cout<<"Enter two strings to concatenate : \n";
 	char a[20],b[20];
 	cin>>a>>b;
@@ -101,11 +103,24 @@ int main()
 	MyString str3;
 	str3=str1+str2;
 	str3.display();
-	MyString str4;
 
 	//Use >> and << overloaded operator
+	cout<<"\nImplementation of >> << operator overloading....!!\n\n";
+	MyString str4;
 	cout<<"Enter a string : ";
 	cin>>str4;
 	cout<<str4;
+
+	//Use [] overloaded operator
+	cout<<"\nImplementation of [] operator overloading....!!\n\n";
+	char c[20];
+	int index;
+	cout<<"Enter a string : ";
+	cin>>c;
+	MyString str5(c);
+	cout<<"Enter index : ";
+	cin>>index;
+	char d = str5[index-1];
+
 	return 0;
 }
