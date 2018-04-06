@@ -79,7 +79,7 @@ void Stack::display()
 int main()
 {
 	Stack s1;
-	int choice,temp;
+	int choice;
 	while(1)
 	{
 		cout<<"1. Push.\n2. Pop.\n3. Display.\n";
