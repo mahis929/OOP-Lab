@@ -1,18 +1,19 @@
 #include<iostream>
-using namespace std;
-#define size 5 
+using namespace std; 
 
 class Stack
 {
-	int items[size];
+	int *items;
 	int top;
 	int full();
 	int empty();
 public:
+	int size;
 	Stack()
 	{
 		top = -1;
 	}
+	Stack(int);
 	Stack operator --(int);
 	Stack operator ++(int);
 	friend Stack operator +(Stack s, int elem);
@@ -51,6 +52,13 @@ int Stack::empty()
 		return 1;
 	}
 	return 0;
+}
+
+Stack::Stack(int s)
+{
+	top = -1;
+	size = s;
+	items = new int[size];
 }
 
 Stack operator +(Stack s1, int elem)
@@ -108,7 +116,10 @@ ostream & operator <<(ostream &out, Stack &s1)
 
 int main()
 {
-	Stack s1;
+	int size;
+	cout<<"Enter the size of the stack : ";
+	cin>>size;
+	Stack s1(size);
 	int choice, elem, index;
 	while(1)
 	{
