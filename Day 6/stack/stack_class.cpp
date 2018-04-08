@@ -1,4 +1,5 @@
 #include<iostream>
+#include <stdlib.h>
 using namespace std; 
 
 class Stack
@@ -12,8 +13,10 @@ public:
 	Stack()
 	{
 		top = -1;
+		items = new int[0];
 	}
 	Stack(int);
+	void initializeStack();
 	Stack operator --(int);
 	Stack operator ++(int);
 	friend Stack operator +(Stack s, int elem);
@@ -36,6 +39,20 @@ public:
 	}
 };
 
+Stack::Stack(int s)
+{
+	top = -1;
+	size = s;
+	items = new int[size];
+}
+
+void Stack::initializeStack()
+{
+	cout<<"Enter the size of the stack : ";
+	cin>>size;
+	Stack s(size);
+}
+
 int Stack::full()
 {
 	if(top == size-1)
@@ -52,13 +69,6 @@ int Stack::empty()
 		return 1;
 	}
 	return 0;
-}
-
-Stack::Stack(int s)
-{
-	top = -1;
-	size = s;
-	items = new int[size];
 }
 
 Stack operator +(Stack s1, int elem)
@@ -116,34 +126,43 @@ ostream & operator <<(ostream &out, Stack &s1)
 
 int main()
 {
-	int size;
-	cout<<"Enter the size of the stack : ";
-	cin>>size;
-	Stack s1(size);
+	Stack s1;
 	int choice, elem, index;
 	while(1)
 	{
-		cout<<"1. Push.\n2. Pop.\n3. Index. \n4. Decrement. \n5. Increment.\n6. Display\n\n";
+		cout<<"0. Initialise Stack.\n1. Push.\n2. Pop.\n3. Index. \n4. Decrement. \n5. Increment.\n6. Display.\n7. Exit.\n\n";
 		cout<<"Enter your choice : ";
 		cin>>choice;
 		switch(choice)
 		{
+			case 0: s1.initializeStack();
+					break;
+
 			case 1: cout<<"Enter an element : ";
 					cin>>elem;
 					s1 = s1 + elem;
 					break;
+
 			case 2: s1 = -s1;
 					break;
+			
 			case 3: cout<<"Enter the index of element : ";
 					cin>>index;
 					s1[index];
 					break;
+			
 			case 4: s1--;
 					break;
+			
 			case 5: s1++;
 					break;
+			
 			case 6: cout<<"\nThe elements are : "<<s1<<"\n";
 					break;
+			
+			case 7: cout<<"\nThanks..!\n";
+					exit(1);
+
 			default : cout<<"Invalid Choice..!\n\n";
 		}
 	}
