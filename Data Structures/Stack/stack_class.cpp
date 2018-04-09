@@ -88,6 +88,11 @@ void Stack::pop()
 
 void Stack::display()
 {
+	if(empty())
+	{
+		cout<<"\nThe Queue is empty..!\n\n";
+		return;
+	}
 	cout<<"\nThe Stack is : ";
 	for(int i = top; i >= 0; i--)
 	{
