@@ -42,7 +42,7 @@ void Queue::initialiseQueue()
 
 int Queue::empty()
 {
-	if(rear == -1)
+	if(front == -1 || front > rear)
 	{
 		return 1;
 	}
@@ -87,11 +87,7 @@ void Queue::dequeue()
 	else
 	{
 		cout<<"\n Deleted element is : "<<items[front]<<"\n\n";
-		for(int i=0; i<rear-1; i++)
-		{
-			items[i] = items[i+1];
-		}
-		rear--;
+		front++;
 	}
 }
 
@@ -155,6 +151,6 @@ int main()
 			default : cout<<"\nInvalid Choice..!!\n\n";
 		}
 	}
-	cout<<"\nThanks"
-;	return 0;
+	cout<<"\nThanks";
+	return 0;
 }
